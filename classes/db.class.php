@@ -27,7 +27,7 @@ class db {
             $stmt->bindParam(':value', array_values($array), PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->rowCount();
-        } catch (PDOException $ex) {
+        } catch (PDOException $e) {
             echo "Error on insert: " . $e->getMessage();
         }
     }

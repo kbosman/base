@@ -5,7 +5,7 @@ $db = new db();
 $db->db_table = "DEBUG";
 echo "Hello world!";
 $test = array(
-    "id" => "1",
+    "id" => "2",
     "msg" => "Test",
     "msg1" => "Test1"
 );
