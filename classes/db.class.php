@@ -34,7 +34,7 @@ class db {
         if($query){
             return TRUE;
         } else {
-            DIE("Error on insert: ('" . $this->link->errno . "' -> " . $this->link->error . ")");
+            DIE("Error on insert: ('" . $this->link->errno . "' -> " . $this->link->error . ") SQL: " . $sql);
             return FALSE;
         }
     }
