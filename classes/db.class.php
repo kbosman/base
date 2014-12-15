@@ -31,9 +31,8 @@ class db {
             }
             $stmt = $this->link->prepare($sql . join(', ', $fields) . ") VALUES (" . join(', ', $params) . ")");
             $i = 0;
-            foreach ($array as $value) {
-                $stmt->bindValue( ++$i, $value);
-            }
+            foreach ($array as $value)
+                $stmt->bindValue(++$i, $value);
             $stmt->execute();
             return $stmt->rowCount();
         } catch (PDOException $e) {
@@ -42,36 +41,29 @@ class db {
     }
 
     public function update($data, $where) {
+        //note: $data & $where should use the keys as the field names! example: array(id => 1, name => john)
         try {
             $sql = "UPDATE " . $this->db_table . " SET ";
 
             // preparing sql for updatet data
             $fields = array();
-            $params = array();
-            foreach ($data as $field => $value) {
-                $params[] = '?';
+            foreach ($data as $field => $value)
                 $fields[] = $field . "=?";
-            }
             $sql .= join(', ', $fields) . " WHERE ";
 
             // preparing sql for the where clause
             $fields = array(); // this will reset the content of the variable
-            $params = array();
-            foreach ($where as $field => $value) {
-                $params[] = '?';
+            foreach ($where as $field => $value)
                 $fields[] = $field . "=?";
-            }
             $sql .= join(' AND ', $fields);
 
             // prepare the pdo statement
             $stmt = $this->link->prepare($sql);
             $i = 0;
-            foreach ($data as $value) {
-                $stmt->bindValue( ++$i, $value);
-            }
-            foreach ($where as $value) {
-                $stmt->bindValue( ++$i, $value);
-            }
+            foreach ($data as $value)
+                $stmt->bindValue(++$i, $value);
+            foreach ($where as $value)
+                $stmt->bindValue(++$i, $value);
             $stmt->execute();
             return $stmt->rowCount();
         } catch (PDOException $e) {
@@ -79,8 +71,40 @@ class db {
         }
     }
 
-    public function select() {
-        
+    public function select($sql = NULL, $fields = NULL, $where = NULL) {
+        //note: $fields is a normal array, $where should be a associative array whith the field names being the keys
+
+        try {
+            if ($sql !== NULL) {
+                $stmt = $this->link->query($sql);
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $sql = "SELECT ";
+                // prepare the sql with ? for the fields
+                $params = array();
+                foreach ($fields as $field)
+                    $params[] = '?';
+                $sql .= join(", ", $params) . " FROM " . $this->db_table . " WHERE ";
+
+                // prepare the sql with ? for the where clause
+                $params = array();
+                foreach ($where as $field => $value)
+                    $params[] = $value . "=?";
+                $sql .= join(" AND ", $params);
+
+                // PDO PREPARE
+                $stmt = $this->link->prepare($value);
+                $i = 0;
+                foreach ($fields as $value)
+                    $stmt->bindValue(++$i, $value);
+                foreach ($where as $value)
+                    $stmt->bindValue(++$i, $value);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+        } catch (PDOException $e) {
+            echo "Error on select: " . $e->getMessage() . "<br/>";
+        }
     }
 
     public function delete() {
