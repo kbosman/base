@@ -13,7 +13,6 @@ class db {
         if ($this->link->connect_errno) {
             die("Error connecting to the database: " . $this->link->connect_error);
         }
-        echo "sucess<br/>";
     }
 
     public function insert($array) {
@@ -21,14 +20,22 @@ class db {
         $sql = "INSERT INTO " . $this->db_table;
         $fields = "(";
         $values = " VALUES (";
+        $last_field = key(array_slice($array, -1, 1, TRUE));
+        $last_value = array_slice($array, -1, 1, TRUE);
         foreach ($array as $key => $value) {
             $fields .= $key . ", ";
             $values .= "'" . $this->link->real_escape_string($value) . "', ";
         }
-        $fields .= ")";
-        $values .= ")";
+        $fields .= $last_field . ")";
+        $values .= $last_value . ")";
         $sql .= $fields . $values;
-        return $sql;
+        $query = $this->link->query($sql);
+        if($query){
+            return TRUE;
+        } else {
+            trigger_error("Error on insert: ('" . $this->link->errno . "' -> " . $this->link->error . ")");
+            return FALSE;
+        }
     }
 
     public function update() {
