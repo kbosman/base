@@ -25,7 +25,7 @@ class db {
         $last_value = array_pop($array);
         foreach ($array as $key => $value) {
             $fields .= $key . ", ";
-            $values .= "'" . $this->link->real_escape_string($value) . "', ";
+            $values .= '"' . $this->link->real_escape_string($value) . '", ';
         }
         $fields .= $last_field . ")";
         $values .= $last_value . ")";
