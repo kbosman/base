@@ -8,6 +8,6 @@ $test = array(
     "msg" => "Test",
     "msg1" => "Test1"
 );
-
-echo $db->insert($test);
-?>
+echo "<pre>";
+var_dump($db->insert($test));
+echo "</pre>";
