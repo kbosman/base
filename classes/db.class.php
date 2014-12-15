@@ -71,7 +71,7 @@ class db {
         }
     }
 
-    public function select($sql = NULL, $fields = NULL, $where = NULL) {
+    public function select($fields = NULL, $where = NULL, $sql = NULL) {
         //note: $fields is a normal array, $where should be a associative array whith the field names being the keys
 
         try {
