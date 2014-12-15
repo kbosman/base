@@ -6,7 +6,7 @@ echo "Hello world!";
 $test = array(
     "voornaam" => "Pascal",
     "achternaam" => "Drewes",
-    "leeftijd" => "17"
+    "leeftijd" => "18"
 );
 
 echo $db->insert($test);
