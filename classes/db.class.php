@@ -22,7 +22,7 @@ class db {
         $fields = "(";
         $values = " VALUES (";
         $last_field = key(array_slice($array, -1, 1, TRUE));
-        $last_value = array_pop($array);
+        $last_value = '"' . array_pop($array) . '"';
         foreach ($array as $key => $value) {
             $fields .= $key . ", ";
             $values .= '"' . $this->link->real_escape_string($value) . '", ';
