@@ -13,6 +13,7 @@ class db {
         if ($this->link->connect_errno) {
             die("Error connecting to the database: " . $this->link->connect_error);
         }
+        echo "sucess<br/>";
     }
 
     public function insert($array) {
