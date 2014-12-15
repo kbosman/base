@@ -95,12 +95,9 @@ class db {
                 // PDO PREPARE
                 $stmt = $this->link->prepare($sql);
                 $i = 0;
-                foreach ($where as $value) {
-                    $stmt->bindParam( ++$i, $value);
-                    echo $i . " " . $value . "<br/>";
-                }
+                foreach ($where as $value)
+                    $stmt->bindValue( ++$i, $value);
                 $stmt->execute();
-                $stmt->debugDumpParams();
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         } catch (PDOException $e) {
@@ -108,8 +105,35 @@ class db {
         }
     }
 
-    public function delete() {
-        
+    public function delete($array) {
+        //note: $where should be a associative array whith the field names being the keys
+        try {
+            // basic sql
+            $sql = "DELETE FROM " . $this->table . " WHERE ";
+
+            //generate rest of sql basing on the $array
+            $params = array();
+            foreach ($array as $key => $value) {
+                $params[] = $key . "=?";
+            }
+            $sql .= join(" AND ", $params);
+
+            //prepare the sql
+            $stmt = $this->link->prepare($sql);
+
+            //bind param
+            $i = 0;
+            foreach ($array as $value)
+                $stmt->bindValue( ++$i, $value);
+            
+            //execute the query on the dbms
+            $stmt->execute();
+            
+            //return the number of rows deleted
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            echo "Error on delete: " . $e->getMessage() . "<br/>";
+        }
     }
 
 }
