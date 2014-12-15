@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 require_once 'classes/db.class.php';
 $db = new db();
-$db->db_table = "debug";
+$db->db_table = "DEBUG";
 $data = array(
     "msg1" => "this is weird",
 );
