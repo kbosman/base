@@ -109,7 +109,7 @@ class db {
         //note: $where should be a associative array whith the field names being the keys
         try {
             // basic sql
-            $sql = "DELETE FROM " . $this->table . " WHERE ";
+            $sql = "DELETE FROM " . $this->db_table . " WHERE ";
 
             //generate rest of sql basing on the $array
             $params = array();
