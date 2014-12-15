@@ -1,4 +1,7 @@
 <?php
-class output {
-    //put your code here
+class output extends db {
+    
+    public function __construct() {
+        parent::__construct();
+    }
 }

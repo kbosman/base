@@ -8,7 +8,10 @@ class db {
     public $db_table;
     
     public function __construct() {
-        $this->link = new mysqli($this->host, $this->db_user, $this->db_pass, $this->)
+        $this->link = new mysqli($this->db_host, $this->db_user, $this->db_pass);       
+        if ($this->link->connect_errno) {
+            die("Error connecting to the database: " . $this->link->connect_error);
+        }
     }
     
 }
