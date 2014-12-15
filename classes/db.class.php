@@ -61,7 +61,7 @@ class db {
                 $params[] = '?';
                 $fields[] = $field . "=?";
             }
-            $sql .= join(', ', $fields);
+            $sql .= join(' AND ', $fields);
 
             // prepare the pdo statement
             $stmt = $this->link->prepare($sql);
