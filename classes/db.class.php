@@ -93,7 +93,7 @@ class db {
                 $sql .= join(" AND ", $params);
 
                 // PDO PREPARE
-                $stmt = $this->link->prepare($value);
+                $stmt = $this->link->prepare($sql);
                 $i = 0;
                 foreach ($fields as $value)
                     $stmt->bindValue(++$i, $value);
