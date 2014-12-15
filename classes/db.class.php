@@ -14,4 +14,20 @@ class db {
         }
     }
     
+    public function insert() {
+        
+    }
+    
+    public function update() {
+        
+    }
+    
+    public function select() {
+        
+    }
+    
+    public function delete() {
+        
+    }
+    
 }
