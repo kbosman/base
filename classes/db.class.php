@@ -32,7 +32,7 @@ class db {
             $stmt = $this->link->prepare($sql . join(', ', $fields) . ") VALUES (" . join(', ', $params) . ")");
             $i = 0;
             foreach ($array as $value)
-                $stmt->bindValue(++$i, $value);
+                $stmt->bindValue( ++$i, $value);
             $stmt->execute();
             return $stmt->rowCount();
         } catch (PDOException $e) {
@@ -61,9 +61,9 @@ class db {
             $stmt = $this->link->prepare($sql);
             $i = 0;
             foreach ($data as $value)
-                $stmt->bindValue(++$i, $value);
+                $stmt->bindValue( ++$i, $value);
             foreach ($where as $value)
-                $stmt->bindValue(++$i, $value);
+                $stmt->bindValue( ++$i, $value);
             $stmt->execute();
             return $stmt->rowCount();
         } catch (PDOException $e) {
@@ -83,23 +83,24 @@ class db {
                 // prepare the sql with ? for the fields
                 $params = array();
                 foreach ($fields as $field)
-                    $params[] = '?';
+                    $params[] = $field;
                 $sql .= join(", ", $params) . " FROM " . $this->db_table . " WHERE ";
 
                 // prepare the sql with ? for the where clause
                 $params = array();
                 foreach ($where as $field => $value)
-                    $params[] = $value . "=?";
+                    $params[] = $field . "=?";
                 $sql .= join(" AND ", $params);
 
                 // PDO PREPARE
                 $stmt = $this->link->prepare($sql);
                 $i = 0;
-                foreach ($fields as $value)
-                    $stmt->bindValue(++$i, $value);
-                foreach ($where as $value)
-                    $stmt->bindValue(++$i, $value);
+                foreach ($where as $value) {
+                    $stmt->bindParam( ++$i, $value);
+                    echo $i . " " . $value . "<br/>";
+                }
                 $stmt->execute();
+                $stmt->debugDumpParams();
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         } catch (PDOException $e) {
