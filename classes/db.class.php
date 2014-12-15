@@ -33,7 +33,7 @@ class db {
         if($query){
             return TRUE;
         } else {
-            trigger_error("Error on insert: ('" . $this->link->errno . "' -> " . $this->link->error . ")");
+            DIE("Error on insert: ('" . $this->link->errno . "' -> " . $this->link->error . ")");
             return FALSE;
         }
     }
