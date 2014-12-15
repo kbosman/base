@@ -1,14 +1,17 @@
 <?php
+
 error_reporting(E_ALL);
+
 require_once 'classes/db.class.php';
 $db = new db();
-$db->db_table = "DEBUG";
-echo "Hello world!";
-$test = array(
+$db->db_table = "debug";
+$data = array(
+    "msg1" => "this is weird",
+);
+$where = array(
     "id" => "2",
-    "msg" => "Test",
-    "msg1" => "Test1"
+    "msg" => "2"
 );
 echo "<pre>";
-var_dump($db->insert($test));
+var_dump($db->update($data, $where));
 echo "</pre>";
