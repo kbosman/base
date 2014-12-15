@@ -31,8 +31,8 @@ class db {
             }
             $stmt = $this->link->prepare($sql . join(', ', $fields) . ") VALUES (" . join(', ', $params) . ")");
             $i = 0;
-            foreach ($array as $value){
-                $stmt->bindValue(++$i, $value);
+            foreach ($array as $value) {
+                $stmt->bindValue( ++$i, $value);
             }
             $stmt->execute();
             return $stmt->rowCount();
@@ -42,7 +42,41 @@ class db {
     }
 
     public function update($data, $where) {
-        
+        try {
+            $sql = "UPDATE " . $this->db_table . " SET ";
+
+            // preparing sql for updatet data
+            $fields = array();
+            $params = array();
+            foreach ($data as $field => $value) {
+                $params[] = '?';
+                $fields[] = $field . "=?";
+            }
+            $sql .= join(', ', $fields) . " WHERE ";
+
+            // preparing sql for the where clause
+            $fields = array(); // this will reset the content of the variable
+            $params = array();
+            foreach ($where as $field => $value) {
+                $params[] = '?';
+                $fields[] = $field . "=?";
+            }
+            $sql .= join(', ', $fields);
+
+            // prepare the pdo statement
+            $stmt = $this->link->prepare($sql);
+            $i = 0;
+            foreach ($data as $value) {
+                $stmt->bindValue( ++$i, $value);
+            }
+            foreach ($where as $value) {
+                $stmt->bindValue( ++$i, $value);
+            }
+            $stmt->execute();
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            echo "Error on update: " . $e->getMessage() . "<br/>";
+        }
     }
 
     public function select() {
