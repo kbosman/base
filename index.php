@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 require_once 'classes/db.class.php';
 $db = new db();
 $db->db_table = "DEBUG";
