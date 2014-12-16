@@ -6,10 +6,6 @@ class create extends user {
         parent::__construct();
     }
     
-    public function testParent() {
-        echo $this->db_table;
-        echo $this->test;
-    }
 }
 
 //if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
