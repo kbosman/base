@@ -39,4 +39,4 @@ $db->db_table = "DEBUG";
 $where = array(
     "Msg" => "Test"
 );
-var_dump($db->remove($where));
+var_dump($db->delete($where));
