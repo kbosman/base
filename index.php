@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
         <title>Test</title>
     </head>
     <body>
-        <form action="" method="post">
+        <form action="" method="POST">
             Gebruikersnaam: <input type="text" name="Gebruikersnaam" />
             <br/>
             Wachtwoord: <input type="text" name="Wachtwoord" />
