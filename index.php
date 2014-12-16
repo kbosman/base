@@ -33,5 +33,5 @@ $where = array(
     "id" => "1"
 );
 echo "<pre>";
-var_dump($fields, $where);
+var_dump($db->select($fields, $where));
 echo "</pre>";
