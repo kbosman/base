@@ -44,9 +44,9 @@ require_once 'classes/user.class.php';
 $user = new user();
 
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-    var_dump($user->register($fields));
-}
+//if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
+//    var_dump($user->register($fields));
+//}
 ?>
 <html>
     <head>
