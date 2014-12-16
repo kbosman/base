@@ -42,8 +42,9 @@ error_reporting(E_ALL);
 //
 require_once 'classes/create.class.php';
 $create = new create();
-$create->login();
-
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
+    var_dump($create->login());
+}
 ?>
 <html>
     <head>
