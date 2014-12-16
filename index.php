@@ -42,6 +42,20 @@ error_reporting(E_ALL);
 //
 require_once 'classes/create.class.php';
 $create = new create();
-$create->testParent();
+$create->login();
 
-
+?>
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            Gebruikersnaam: <input type="text" name="Gebruikersnaam" />
+            <br/>
+            Wachtwoord: <input type="text" name="Wachtwoord" />
+            <br/>
+            <input type="submit" value="submit" name="submit" />
+        </form>
+    </body>
+</html>
