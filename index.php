@@ -27,11 +27,16 @@ $db->db_table = "DEBUG";
 //var_dump($db->update($data, $where));
 //
 // SELECTING STUFF
+//$fields = array("msg", "msg1");
+//$where = array(
+//    "id" => "1"
+//);
+//echo "<pre>";
+//var_dump($db->select($fields, $where));
+//echo "</pre>";
+// DELETING STUFF
 
-$fields = array("msg", "msg1");
 $where = array(
-    "id" => "1"
+    "Msg" => "Test"
 );
-echo "<pre>";
-var_dump($db->select($fields, $where));
-echo "</pre>";
+var_dump($db->remove($where));
