@@ -1,5 +1,5 @@
 <?php
-
+require_once 'db.class.php';
 class user extends db {
 
     // ONDERSTAANDE FUNCTIES NOG NIET GETEST!!! //
