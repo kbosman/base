@@ -14,6 +14,9 @@ class user extends db {
         // Store post input into $data and check for content
         $data = array();
         foreach ($fields as $key => $value) {
+            echo "<pre>";
+            var_dump($key . "==" . $value);
+            echo "</pre>";
             $data[$key] = filter_input(INPUT_POST, $key);
             if ($data[$key] === '') {
                 trigger_error("Lege input");
