@@ -1,7 +1,7 @@
 <?php
 
 error_reporting(E_ALL);
-
+    
 require_once 'classes/db.class.php';
 $db = new db();
 $db->db_table = "DEBUG";
@@ -18,11 +18,19 @@ $db->db_table = "DEBUG";
 //var_dump($db->insert($array));
 //
 //  UPDATING STUFF
+//$data = array(
+//    "msg" => "Je moeder"
+//);
+//$where = array(
+//    "id" => "2"
+//);
+//var_dump($db->update($data, $where));
+//
+// SELECTING STUFF
 
-$data = array(
-    "msg" => "Je moeder"
-);
+$fields = array("msg", "msg1");
 $where = array(
-    "id" => "2"
+    "id" => "1"
 );
-var_dump($db->update($data, $where));
+
+var_dump($fields, $where);
