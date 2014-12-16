@@ -16,7 +16,7 @@ class output extends db {
         $alleTicketID = $this->select(array("idTicket"));
         $return = array();
         foreach ($alleTicketID as $ticket){
-            
+            $return[$ticket] = $this->select();
         }
     }
     // SELECTING STUFF
