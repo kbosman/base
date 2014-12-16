@@ -26,10 +26,11 @@ class user extends db {
         // Generate password hash using the safe PHP password_hash
         $data["Wachtwoord"] = password_hash($data["Wachtwoord"], PASSWORD_DEFAULT);
         // Check if the username allready exists
-        $check = $this->select(array("*"), array("Gebruikersnaam" => $data["Gebruikersnaam"]));
+        $check = $this->select(array(""), array("Gebruikersnaam" => $data["Gebruikersnaam"]));
         if (count($check) >= 1) {
             return "Gebruikersnaam bestaat al!";
         } else {
+            var_dump($data);
             // Insert the data into the database
             $check = $this->insert($data);
             if ($check === 1) {
