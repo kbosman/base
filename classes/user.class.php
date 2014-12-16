@@ -3,10 +3,12 @@ require_once 'db.class.php';
 class user extends db {
 
     // ONDERSTAANDE FUNCTIES NOG NIET GETEST!!! //
-
+    public $test = TRUE;
+    
     public function __construct() {
         parent::__construct();
         $this->db_table = "ACCOUNT";
+        
         session_start();
     }
 

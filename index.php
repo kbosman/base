@@ -40,34 +40,8 @@ error_reporting(E_ALL);
 //);
 //var_dump($db->delete($where));
 //
-require_once 'classes/user.class.php';
-$user = new user();
+require_once 'classes/create.class.php';
+$create = new create();
+$create->testParent();
 
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-    $fields = array("Gebruikersnaam", "Wachtwoord", "Autorisatie");
-    var_dump($user->register($fields));
-}
-?>
-<html>
-    <head>
-        <title>Test</title>
-    </head>
-    <body>
-        <form action="" method="POST">
-            Gebruikersnaam: <input type="text" name="Gebruikersnaam" />
-            <br/>
-            Wachtwoord: <input type="text" name="Wachtwoord" />
-            <br/>
-            Autorisatie:<br/>
-            <select name="Autorisatie">
-                <option value="Teamleider">Teamleider</option>
-                <option value="Admin">Admin</option>
-                <option value="Medewerker">Medewerker</option>
-                <option value="Bedrijfsmedewerker">Bedrijfsmedewerker</option>
-            </select>
-            <br/>
-            <input type="submit" value="submit" name="submit" />
-        </form>
-    </body>
-</html>
