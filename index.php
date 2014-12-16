@@ -32,5 +32,6 @@ $fields = array("msg", "msg1");
 $where = array(
     "id" => "1"
 );
-
+echo "<pre>";
 var_dump($fields, $where);
+echo "</pre>";
