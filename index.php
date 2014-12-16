@@ -8,4 +8,3 @@ $where = array("id" => "2", "msg" => "Test");
 echo "<pre>";
 var_dump($db->delete($where));
 echo "</pre>";
-echo "hallo";
