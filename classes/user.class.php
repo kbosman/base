@@ -30,7 +30,9 @@ class user extends db {
         if (count($check) >= 1) {
             return "Gebruikersnaam bestaat al!";
         } else {
+            echo "<pre>";
             var_dump($data);
+            echo "</pre>";
             // Insert the data into the database
             $check = $this->insert($data);
             if ($check === 1) {
