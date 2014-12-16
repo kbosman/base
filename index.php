@@ -1,12 +1,12 @@
 <?php
 
 error_reporting(E_ALL);
-    
-require_once 'classes/db.class.php';
-$db = new db();
-$db->db_table = "DEBUG";
 
-
+// DEMO ON DB.CLASS
+//require_once 'classes/db.class.php';
+//$db = new db();
+//$db->db_table = "DEBUG";
+//
 //INSERT UPDATE SELECT DELETE
 //
 //  INSERTING STUFF
@@ -34,9 +34,34 @@ $db->db_table = "DEBUG";
 //echo "<pre>";
 //var_dump($db->select($fields, $where));
 //echo "</pre>";
+//
 // DELETING STUFF
+//$where = array(
+//    "Msg" => "Test"
+//);
+//var_dump($db->delete($where));
 
-$where = array(
-    "Msg" => "Test"
-);
-var_dump($db->delete($where));
+require_once 'classes/user.class.php';
+$user = new user();
+
+
+if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
+    var_dump($user->register($fields));
+}
+
+?>
+<form action="" method="post">
+    Gebruikersnaam: <input type="text" name="Gebruikersnaam" />
+    <br/>
+    Wachtwoord: <input type="text" name="Wachtwoord" />
+    <br/>
+    Autorisatie:<br/>
+    <select name="Autorisatie">
+        <option value="Teamleider">Teamleider</option>
+        <option value="Admin">Admin</option>
+        <option value="Medewerker">Medewerker</option>
+        <option value="Bedrijfsmedewerker">Bedrijfsmedewerker</option>
+    </select>
+    <br/>
+    <input type="submit" value="submit" name="submit" />
+</form>
