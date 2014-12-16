@@ -13,10 +13,7 @@ class user extends db {
     public function register($fields) {
         // Store post input into $data and check for content
         $data = array();
-        foreach ($fields as $key => $value) {
-            echo "<pre>";
-            var_dump($key . "==" . $value);
-            echo "</pre>";
+        foreach ($fields as $key) {
             $data[$key] = filter_input(INPUT_POST, $key);
             if ($data[$key] === '') {
                 trigger_error("Lege input");
@@ -33,9 +30,6 @@ class user extends db {
         if (count($check) >= 1) {
             return "Gebruikersnaam bestaat al!";
         } else {
-            echo "<pre>";
-            var_dump($data);
-            echo "</pre>";
             // Insert the data into the database
             $check = $this->insert($data);
             if ($check === 1) {
