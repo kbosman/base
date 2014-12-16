@@ -41,10 +41,11 @@ error_reporting(E_ALL);
 //var_dump($db->delete($where));
 //
 require_once 'classes/create.class.php';
-$create = new create();
+$user = new user();
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-    var_dump($create->login());
+    var_dump($user->login());
 }
+var_dump($user->isLoggedIn());
 ?>
 <html>
     <head>
