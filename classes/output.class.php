@@ -9,8 +9,8 @@ class output extends db {
     }
 
     public function tickets($velden, $bedrijf = NULL, $periode = NULL) {
-        $sql = "SELECT " . join(", ", $velden) ." FROM TICKET, STATUS_WIJZIGING";
-        $result = $this->select(NULL, NULL, $sql);
+//        $sql = "SELECT " . join(", ", $velden) ." FROM TICKET, STATUS_WIJZIGING";
+//        $result = $this->select(NULL, NULL, $sql);
         // idTicket     TICKET      
         // bedrijfsnaam BEDRIJF     STATUS_WIJZIGING.idBedrijf
         $alleTicketID = $this->select(array("idTicket"));
