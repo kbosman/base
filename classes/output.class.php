@@ -7,7 +7,13 @@ class output extends db {
         $this->db_table = "";
         session_start();
     }
-
+    
+    /*
+    * Created by Lesley Jordan van Oostenrijk
+    * Date: 17-12-2014
+    * Description: public function tickets -> overzicht geven van alle tickets
+     */
+    
     public function tickets($velden, $bedrijf = NULL, $periode = NULL) {
 //        $sql = "SELECT " . join(", ", $velden) ." FROM TICKET, STATUS_WIJZIGING";
 //        $result = $this->select(NULL, NULL, $sql);
@@ -16,19 +22,25 @@ class output extends db {
         $alleTicketID = $this->select(array("idTicket"));
         $return = array();
         foreach ($alleTicketID as $ticket){
-            $return[$ticket] = $this->select();
+            $this->db_table = "TICKET";
+            
+            $return[$ticket]['IncidentType'] = $this->select(array("IncidentType"), array("idTicket" => $ticket));
+            $return[$ticket]['ProbleemStelling'] = $this->select(array("ProbleemStelling"), array("idTicket" => $ticket));
+            
+            $this->db_table = "STATUS_WIJZIGING";
+            $return[$ticket]['HuidigeStatus'] = $this->select(NULL, NULL, "SELECT Status FROM STATUS_WIJZIGING WHERE idTicket = " . $ticket . " ORDER BY idStatus DESC LIMIT 1");
+            $return[$ticket]['GeopendOp'] = $this->select(NULL, NULL, "SELECT DatumTijd FROM STATUS_WIJZIGING WHERE idTicket = " . $ticket . " ORDER BY idStatus ASC LIMIT 1");
+            
+            $idBedrijf = $this->select(NULL, NULL, "SELECT idBedrijf FROM STATUS_WIJZIGING WHERE idTicket = " . $ticket . " ORDER BY idStatus ASC LIMIT 1");
+            
+            $this->db_table = "BEDRIJF";
+            $return[$ticket]["Bedrijf"] = $this->select(array("BedrijfsNaam"), array("idBedrijf" => $idBedrijf));
         }
+        
+        return $return;
+        
     }
-    // SELECTING STUFF
-//$fields = array("msg", "msg1");
-//$where = array(
-//    "id" => "1"
-//);
-//echo "<pre>";
-//var_dump($db->select($fields, $where));
-//echo "</pre>";
-//
-    
+ 
     public function openTickets() {
         
     }
