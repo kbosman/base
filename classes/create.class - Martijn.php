@@ -1,3 +1,5 @@
+<!--http://stenden-ehelp.nl/classes/create.class%20-%20Martijn.php-->
+
 <?php
 require_once 'user.class.php';
 class create extends user {
@@ -5,9 +7,24 @@ class create extends user {
     public function __construct() {
         parent::__construct();
     }
-    
+    public function medewerker(){
+     $data = array();
+     $fields = array(
+            "idMedewerker",
+            "Gebruikersnaam",
+            "Email",
+            "voornaam",
+            "Schternaam",
+            "Tussenvoegsel");
+        foreach ($fields as $key) {
+            $data[$key] = filter_input(INPUT_POST, $key);
+            if ($data[$key] === '') {
+                trigger_error("Lege input");
+            }
+        }
+    }
 }
-echo "hallo";
+
 
 //if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
 //    $fields = array("Gebruikersnaam", "Wachtwoord", "Autorisatie");
