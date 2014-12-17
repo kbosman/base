@@ -12,7 +12,7 @@ class user extends db {
         session_start();
     }
 
-    public function register($fields) {
+    public function register($fields, $Autorisatie) {
         // Store post input into $data and check for content
         $data = array();
         foreach ($fields as $key) {
@@ -22,8 +22,8 @@ class user extends db {
             }
         }
         // Check if autorisatie is correct
-        $autorisatie = array('Teamleider', 'Admin', 'Medewerker', 'Bedrijfsmedewerker');
-        if (!in_array($data['Autorisatie'], $autorisatie))
+        $autorisatieCheck = array('Teamleider', 'Admin', 'Medewerker', 'Bedrijfsmedewerker');
+        if (!in_array($Autorisatie, $autorisatieCheck))
             trigger_error("Foute input in 'Autorisatie'");
         // Generate password hash using the safe PHP password_hash
         $data["Wachtwoord"] = password_hash($data["Wachtwoord"], PASSWORD_DEFAULT);
