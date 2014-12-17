@@ -4,7 +4,7 @@ class edit
 {
 
 // WIJZIG GEGEVENS MEDEWERKER
-    public function editMedewerkerOphalen()
+    public function MedewerkerOphalen()
     {   //OPHALEN GEGEVENS
         $fields = array(
             "idMedewerker",
@@ -14,10 +14,10 @@ class edit
             "Achternaam",
             "Tussenvoegsel");
 
-        $where = array("" => "");
+        $where = array("idMedewerker" => "");
     }
 
-    public function editMedewerkerOpslaan()
+    public function MedewerkerOpslaan()
     {//GEGEVENS TERUG VOEREN
         return $data = array(
             "idMedewerker" => "",
@@ -27,11 +27,11 @@ class edit
             "Achternaam" => "",
             "Tussenvoegsel" => "");
 
-        $where = array("" => "");
+        $where = array("idMedewerker" => "");
     }
 
 // WIJZIG GEGEVENS BEDRIJFSMEDEWERKER
-    public function editBedrijfsmedewerker()
+    public function BedrijfsmedewerkerOphalen($idBedrijfsmedewerker)
     {   //OPHALEN GEGEVENS
         $fields = array(
             "idBedrijfsMedewerkers",
@@ -43,7 +43,8 @@ class edit
             "Tussenvoegsel",
             "Functie");
 
-        $where = array("" => "");
+        $where = array("idBedrijfsmedewerker" => $idBedrijfsmedewerker);
+        
     }
 
     public function editBedrijfsmedewerkerOpslaan()
@@ -58,7 +59,7 @@ class edit
             "Tussenvoegsel" => "",
             "Functie" => "");
 
-        $where = array("" => "");
+        $where = array("ID" => "");
     }
 
 //WIJZIG GEGEVENS BEDRIJF
