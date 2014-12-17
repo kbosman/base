@@ -2,29 +2,47 @@
 
 <?php
 require_once 'user.class.php';
-class create extends user {
-    
-    public function __construct() {
+
+class create extends user
+{
+
+    public function __construct()
+    {
         parent::__construct();
     }
-    public function medewerker(){
-     $data = array();
-     $fields = array(
-            "idMedewerker",
-            "Gebruikersnaam",
-            "Email",
-            "voornaam",
-            "Schternaam",
-            "Tussenvoegsel");
-        foreach ($fields as $key) {
-            $data[$key] = filter_input(INPUT_POST, $key);
-            if ($data[$key] === '') {
-                trigger_error("Lege input");
+
+    public function medewerker()
+    {
+        if ($this->register(array("Gebruikersnaam", "Wachtwoord", "Autorisatie"), "Medewerker"))
+        {
+            $data = array();
+            $fields = array(
+                "idMedewerker",
+                "Email",
+                "voornaam",
+                "Achternaam",
+                "Tussenvoegsel");
+            foreach ($fields as $field)
+            {
+                $data[$field] = filter_input(INPUT_POST, $field);
+                if ($data[$field] === '')
+                {
+                    trigger_error("Lege input");
+                }
             }
         }
     }
-}
 
+}
+// Insert the data into the database
+    $check = $this->insert($data);
+        if ($check === 1)
+        {
+            return TRUE;
+        } else
+            {
+                trigger_error("Error bij het aanmaken van uw account!");
+            }
 
 //if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
 //    $fields = array("Gebruikersnaam", "Wachtwoord", "Autorisatie");
