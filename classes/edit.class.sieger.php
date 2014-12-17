@@ -1,47 +1,82 @@
 <?php
 
-class edit extends output
+require_once 'db.class.php';
+
+class edit extends db
 {
 
 // WIJZIG GEGEVENS MEDEWERKER
     public function MedewerkerOpslaan($idMedewerker)
     {//GEGEVENS TERUG VOEREN
-        return $data = array(
-            "idMedewerker" => "",
-            "Gebruikersnaam" => "",
-            "Email" => "",
-            "Voornaam" => "",
-            "Achternaam" => "",
-            "Tussenvoegsel" => "");
+        $fields = array(
+            $idMedewerker,
+            $Gebruikersnaam,
+            $Email,
+            $Voornaam,
+            $Achternaam,
+            $Tussenvoegsel);
 
+        foreach ($fields as $key)
+        {
+            $data[$key] = filter_input(INPUT_POST, $key);
+            if ($data[$key] === '')
+            {
+                trigger_error("Lege input");
+            }
+        }
         $where = array("idMedewerker" => $idMedewerker);
+
+        return $this->update($data, $where);
     }
 
-    public function editBedrijfsmedewerkerOpslaan($idBedrijfsmedewerker)
+    public function BedrijfsmedewerkerOpslaan($idBedrijfsmedewerker)
     {   //GEGEVENS TERUG VOEREN
-        return $data = array
-            ("idBedrijfsMedewerkers" => "",
-            "idBedrijf" => "",
-            "Gebruikersnaam" => "",
-            "Email" => "",
-            "Voornaam" => "",
-            "Achternaam" => "",
-            "Tussenvoegsel" => "",
-            "Functie" => "");
+        $fields = array(
+            $idBedrijfsMedewerkers,
+            $idBedrijf,
+            $Gebruikersnaam,
+            $Email,
+            $Voornaam,
+            $Achternaam,
+            $Tussenvoegsel,
+            $Functie);
+
+        foreach ($fields as $key)
+        {
+            $data[$key] = filter_input(INPUT_POST, $key);
+            if ($data[$key] === '')
+            {
+                trigger_error("Lege input");
+            }
+        }
 
         $where = array("idBedrijfsmedewerker" => $idBedrijfsmedewerker);
+
+        return $this->update($data, $where);
     }
 
-    public function EditBedrijfOpslaan($idBedrijf)
+    public function BedrijfOpslaan($idBedrijf)
     { //GEGEVENS TERUG VOEREN
         return $data = array(
-            "idBedrijf" => "",
-            "Bedrijfsnaam" => "",
-            "Adresgegevens" => "",
-            "Telefoon" => "",
-            "Email" => "",
-            "Licentie" => "");
+            $idBedrijf,
+            $Bedrijfsnaam,
+            $Adresgegevens,
+            $Telefoon,
+            $Email,
+            $Licentie);
 
-        $where = array("idBedrijf" => $idBedrijf );
+        foreach ($fields as $key)
+        {
+            $data[$key] = filter_input(INPUT_POST, $key);
+            if ($data[$key] === '')
+            {
+                trigger_error("Lege input");
+            }
+        }
+
+        $where = array("idBedrijf" => $idBedrijf);
+
+        return $this->update($data, $where);
     }
+
 }
