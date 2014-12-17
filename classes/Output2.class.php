@@ -1,6 +1,6 @@
 <?php
-require_once 'db.class.php';
 //Made by Remco Beikes
+require_once 'db.class.php';
 class output extends db {
     public function MedewerkerOphalen($Achternaam = NULL, $idMedewerker = NULL)
     {   //OPHALEN GEGEVENS
