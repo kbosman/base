@@ -97,7 +97,12 @@ class output extends db {
      */
     
     public function ticket() {
-        
+     $return = array();
+     
+     foreach($alletickets as $ticket){
+         
+     } 
+     
     }
     
     public function MedewerkerOphalen($Achternaam = NULL, $idMedewerker = NULL)
