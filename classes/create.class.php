@@ -6,37 +6,9 @@ class create extends user {
         parent::__construct();
     }
     
-}
 
-//if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-//    $fields = array("Gebruikersnaam", "Wachtwoord", "Autorisatie");
-//    var_dump($user->register($fields));
-//}
-////
-//<html>
-//    <head>
-//        <title>Test</title>
-//    </head>
-//    <body>
-//        <form action="" method="POST">
-//            Gebruikersnaam: <input type="text" name="Gebruikersnaam" />
-//            <br/>
-//            Wachtwoord: <input type="text" name="Wachtwoord" />
-//            <br/>
-//            Autorisatie:<br/>
-//            <select name="Autorisatie">
-//                <option value="Teamleider">Teamleider</option>
-//                <option value="Admin">Admin</option>
-//                <option value="Medewerker">Medewerker</option>
-//                <option value="Bedrijfsmedewerker">Bedrijfsmedewerker</option>
-//            </select>
-//            <br/>
-//            <input type="submit" value="submit" name="submit" />
-//        </form>
-//    </body>
-//</html>
 
-public function create_FAQ() {
+public function FAQ() {
 //Kevin Bosman
 $this->db_table = "MEDEWERKER";
 
@@ -44,7 +16,7 @@ $fields = array("idMedewerker");
 $where = array("Gebruikersnaam" => $_SESSION['gebruikersnaam']);
 
 $idMedewerker = $this->select($fields, $where); 
-//Medewerker id from logged in user
+//↑Medewerker id from logged in user
 
 
 $this->db_table = "FAQ";
@@ -54,7 +26,7 @@ $this->db_table = "FAQ";
 	"Beschrijving",
 	"Oplossing");
 	
-//Ophalen van de benodige velden
+//↑Ophalen van de benodige velden
 
 	$data = array();
         foreach ($fields as $key) {
@@ -63,7 +35,7 @@ $this->db_table = "FAQ";
 					trigger_error("U heeft niets ingevuld!");
 				}
 		}
-//Vullen van de benodige velden
+//↑Vullen van de benodige velden
 			
 	$check = $this->insert($data);
         if ($check === 1){
@@ -71,22 +43,21 @@ $this->db_table = "FAQ";
         } 	else{
 				trigger_error("Fout tijdens het aanmaken van uw FAQ");
 			}
-//velden naar database sturen
-
-
+//↑Velden naar database sturen
 }
 
-public function create_ticket() {
-$this->db_table = "TICKET";
+
+
+public function ticket() {
 //Kevin Bosman
+$this->db_table = "TICKET";
 
-
- $fields = array(
+$fields = array(
 	"IncidentType",
 	"Probleemstelling",
 	"Oplossing");
 	
-//Ophalen van de benodige velden
+//↑Ophalen van de benodige velden
 
 	$data = array();
         foreach ($fields as $key) {
@@ -98,24 +69,25 @@ $this->db_table = "TICKET";
 		
 		$incident = array('Vraag','Wens','Uitval','Functioneel probleem','Technisch probleem');
 			if(!in_array($data["IncidentType"], $incident)){
-				trigger_error("De invulmogelijkheden zijn: Vraag, Wens, Uitval, Functioneel probleem, Technisch probleem. Uw ingevuld incidenttype voldoet hier niet aan!");
+				trigger_error("De invulmogelijkheden zijn: Vraag, Wens, Uitval, Functioneel probleem, Technisch probleem. Uw ingevulde incidenttype voldoet hier niet aan!");
 			}
 		
-//Vullen van de benodige velden
+//↑Vullen van de benodige velden
 			
 	$check = $this->insert($data);
         if ($check === 1){
             return TRUE;
         } 	else{
-				trigger_error("Fout tijdens het aanmaken van uw FAQ");
+				trigger_error("Fout tijdens het aanmaken van uw ticket");
 			}
-//velden naar database sturen
+//↑Velden naar database sturen
 
 }
 
-}
+
 
 public function create_status() {
 $this->db_table = "STATUS_WIJZIGING";
 
+}
 }
