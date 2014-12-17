@@ -11,8 +11,10 @@ class create extends user
         parent::__construct();
     }
 
+    
     public function medewerker()
     {
+        $this->db_table = "MEDEWERKER";
         if ($this->register(array("Gebruikersnaam", "Wachtwoord", "Autorisatie"), "Medewerker"))
         {
             $data = array();
@@ -32,6 +34,7 @@ class create extends user
             }
         }
         // Insert the data into the database
+        $this->db_table = "MEDEWERKER";
         $check = $this->insert($data);
         if ($check === 1)
         {
@@ -43,65 +46,88 @@ class create extends user
     }
 
     
-    public function bedrijfsMedewerker()
+    public function bedrijfsMedewerker($idBedrijf)
     {
-        if ($this->register(array("Gebruikersnaam", "Wachtwoord", "Autorisatie"), "Medewerker"))
+        $this->db_table = "BEDRIJF";
+        $check = $this->select(array($idBedrijf), array("idBedrijf" => $idBedrijf));
+        if (count($check) === 1)
         {
-            $data = array();
-            $fields = array(
-                "idBedrijfsMedewerker",
-                "idBedrijf",
-                "Email",
-                "voornaam",
-                "Achternaam",
-                "Tussenvoegsel",
-                "Functie");
-            foreach ($fields as $field)
+            if ($this->register(array("Gebruikersnaam", "Wachtwoord", "Autorisatie"), "bedrijfsMedewerker"))
             {
-                $data[$field] = filter_input(INPUT_POST, $field);
-                if ($data[$field] === '')
+                $data = array();
+                $fields = array(
+                    "idBedrijfsMedewerker",
+                    "idBedrijf",
+                    "Email",
+                    "voornaam",
+                    "Achternaam",
+                    "Tussenvoegsel",
+                    "Functie");
+                foreach ($fields as $field)
                 {
-                    trigger_error("Lege input");
+                    $data[$field] = filter_input(INPUT_POST, $field);
+                    if ($data[$field] === '')
+                    {
+                        trigger_error("Lege input");
+                    }
                 }
             }
-        }
-        // Insert the data into the database
-        $check = $this->insert($data);
-        if ($check === 1)
-        {
-            return TRUE;
+            // Insert the data into the database
+            $this->db_table = "BEDRIJFSMEDEWERKER";
+            $check = $this->insert($data);
+            if ($check === 1)
+            {
+                return TRUE;
+            } else
+            {
+                trigger_error("Error bij het aanmaken van uw account!");
+            }
         } else
         {
-            trigger_error("Error bij het aanmaken van uw account!");
+            echo "bedrijf bestaat niet";
+        }
+    }
+
+    
+    public function bedrijf($idBedrijf)
+    {
+        $this->db_table = "BEDRIJF";
+        $check = $this->select(array($idBedrijf), array("idBedrijf" => $idBedrijf));
+        if (count($check) === 1)
+        {
+            if ($this->register(array("Gebruikersnaam", "Wachtwoord", "Autorisatie"), "bedrijfsMedewerker"))
+            {
+                $data = array();
+                $fields = array(
+                    "idBedrijf",
+                    "Bedrijfsnaam",
+                    "Adresgegevens",
+                    "Telefoon",
+                    "Email",
+                    "Licentie");
+                foreach ($fields as $field)
+                {
+                    $data[$field] = filter_input(INPUT_POST, $field);
+                    if ($data[$field] === '')
+                    {
+                        trigger_error("Lege input");
+                    }
+                }
+            }
+            // Insert the data into the database
+            $this->db_table = "BEDRIJF";
+            $check = $this->insert($data);
+            if ($check === 1)
+            {
+                return TRUE;
+            } else
+            {
+                trigger_error("Error bij het aanmaken van uw account!");
+            }
+        } else
+        {
+            echo "bedrijf bestaat niet";
         }
     }
 
 }
-
-//if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-//    $fields = array("Gebruikersnaam", "Wachtwoord", "Autorisatie");
-//    var_dump($user->register($fields));
-//}
-////
-//<html>
-//    <head>
-//        <title>Test</title>
-//    </head>
-//    <body>
-//        <form action="" method="POST">
-//            Gebruikersnaam: <input type="text" name="Gebruikersnaam" />
-//            <br/>
-//            Wachtwoord: <input type="text" name="Wachtwoord" />
-//            <br/>
-//            Autorisatie:<br/>
-//            <select name="Autorisatie">
-//                <option value="Teamleider">Teamleider</option>
-//                <option value="Admin">Admin</option>
-//                <option value="Medewerker">Medewerker</option>
-//                <option value="Bedrijfsmedewerker">Bedrijfsmedewerker</option>
-//            </select>
-//            <br/>
-//            <input type="submit" value="submit" name="submit" />
-//        </form>
-//    </body>
-//</html>
