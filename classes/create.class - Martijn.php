@@ -31,18 +31,52 @@ class create extends user
                 }
             }
         }
-    }
-
-}
-// Insert the data into the database
-    $check = $this->insert($data);
+        // Insert the data into the database
+        $check = $this->insert($data);
         if ($check === 1)
         {
             return TRUE;
         } else
+        {
+            trigger_error("Error bij het aanmaken van uw account!");
+        }
+    }
+
+    
+    public function bedrijfsMedewerker()
+    {
+        if ($this->register(array("Gebruikersnaam", "Wachtwoord", "Autorisatie"), "Medewerker"))
+        {
+            $data = array();
+            $fields = array(
+                "idBedrijfsMedewerker",
+                "idBedrijf",
+                "Email",
+                "voornaam",
+                "Achternaam",
+                "Tussenvoegsel",
+                "Functie");
+            foreach ($fields as $field)
             {
-                trigger_error("Error bij het aanmaken van uw account!");
+                $data[$field] = filter_input(INPUT_POST, $field);
+                if ($data[$field] === '')
+                {
+                    trigger_error("Lege input");
+                }
             }
+        }
+        // Insert the data into the database
+        $check = $this->insert($data);
+        if ($check === 1)
+        {
+            return TRUE;
+        } else
+        {
+            trigger_error("Error bij het aanmaken van uw account!");
+        }
+    }
+
+}
 
 //if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
 //    $fields = array("Gebruikersnaam", "Wachtwoord", "Autorisatie");
