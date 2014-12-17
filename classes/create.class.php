@@ -78,6 +78,40 @@ $this->db_table = "FAQ";
 
 public function create_ticket() {
 $this->db_table = "TICKET";
+//Kevin Bosman
+
+
+ $fields = array(
+	"IncidentType",
+	"Probleemstelling",
+	"Oplossing");
+	
+//Ophalen van de benodige velden
+
+	$data = array();
+        foreach ($fields as $key) {
+            $data[$key] = filter_input(INPUT_POST, $key);
+				if ($data[$key] === '') {
+					trigger_error("U heeft niets ingevuld!");
+				}
+		}
+		
+		$incident = array('Vraag','Wens','Uitval','Functioneel probleem','Technisch probleem');
+			if(!in_array($data["IncidentType"], $incident)){
+				trigger_error("De invulmogelijkheden zijn: Vraag, Wens, Uitval, Functioneel probleem, Technisch probleem. Uw ingevuld incidenttype voldoet hier niet aan!");
+			}
+		
+//Vullen van de benodige velden
+			
+	$check = $this->insert($data);
+        if ($check === 1){
+            return TRUE;
+        } 	else{
+				trigger_error("Fout tijdens het aanmaken van uw FAQ");
+			}
+//velden naar database sturen
+
+}
 
 }
 
