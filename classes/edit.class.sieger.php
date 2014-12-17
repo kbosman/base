@@ -2,58 +2,64 @@
 
 class edit
 {
+
 // WIJZIG GEGEVENS MEDEWERKER
-    public function editMedewerker()
+    public function editMedewerkerOphalen()
     {   //OPHALEN GEGEVENS
         $fields = array(
-            "idMedewerker", 
-            "Gebruikersnaam", 
-            "Email", 
-            "Voornaam", 
-            "Achternaam", 
+            "idMedewerker",
+            "Gebruikersnaam",
+            "Email",
+            "Voornaam",
+            "Achternaam",
             "Tussenvoegsel");
-        
+
         $where = array("" => "");
-        
-        //GEGEVENS TERUG VOEREN
-        return $data = array (
+    }
+
+    public function editMedewerkerOpslaan()
+    {//GEGEVENS TERUG VOEREN
+        return $data = array(
             "idMedewerker" => "",
             "Gebruikersnaam" => "",
             "Email" => "",
-            "Voornaam" => "", 
+            "Voornaam" => "",
             "Achternaam" => "",
-            "Tussenvoegsel" => ""); 
-        
-        $where = $where;   
+            "Tussenvoegsel" => "");
+
+        $where = array("" => "");
     }
 
-//WIJZIG GEGEVENS BEDRIJFSMEDEWERKER
+// WIJZIG GEGEVENS BEDRIJFSMEDEWERKER
     public function editBedrijfsmedewerker()
     {   //OPHALEN GEGEVENS
         $fields = array(
-            "idBedrijfsMedewerkers", 
-            "idBedrijf", 
-            "Gebruikersnaam", 
-            "Email", 
-            "Voornaam", 
-            "Achternaam", 
-            "Tussenvoegsel", 
+            "idBedrijfsMedewerkers",
+            "idBedrijf",
+            "Gebruikersnaam",
+            "Email",
+            "Voornaam",
+            "Achternaam",
+            "Tussenvoegsel",
             "Functie");
-        
+
         $where = array("" => "");
-        
-        //GEGEVENS TERUG VOEREN
+    }
+
+    public function editBedrijfsmedewerkerOpslaan()
+    {   //GEGEVENS TERUG VOEREN
         return $data = array
-            ("idBedrijfsMedewerkers" => "", 
+            ("idBedrijfsMedewerkers" => "",
             "idBedrijf" => "",
             "Gebruikersnaam" => "",
             "Email" => "",
-            "Voornaam" => "", 
-            "Achternaam" => "", 
+            "Voornaam" => "",
+            "Achternaam" => "",
             "Tussenvoegsel" => "",
             "Functie" => "");
-        
-        $where = $where;}
+
+        $where = array("" => "");
+    }
 
 //WIJZIG GEGEVENS BEDRIJF
     public function editBedrijf()
@@ -63,20 +69,22 @@ class edit
             "Bedrijfsnaam",
             "Adresgegevens",
             "Telefoon",
-            "Email", 
+            "Email",
             "Licentie");
-        
+
         $where = array("" => "");
-        
-        //GEGEVENS TERUG VOEREN
+    }
+
+    public function EditBedrijfOpslaan()
+    { //GEGEVENS TERUG VOEREN
         return $data = array(
             "idBedrijf" => "",
             "Bedrijfsnaam" => "",
             "Adresgegevens" => "",
             "Telefoon" => "",
-            "Email" => "", 
+            "Email" => "",
             "Licentie" => "");
-        
-        $where = $where;
+
+        $where = array("" => "");
     }
 }
