@@ -3,7 +3,7 @@
 require_once 'db.class.php';
 class output extends db {
     public function MedewerkerOphalen($Achternaam = NULL, $idMedewerker = NULL)
-    {   //OPHALEN GEGEVENS
+    {   //OPHALEN MEDEWERKER GEGEVENS
         $this->db_table = "MEDEWERKER";
         $fields = array(
             "idMedewerker",
@@ -22,7 +22,7 @@ class output extends db {
         return $Medewerker;
     }
     public function BedrijfsmedewerkerOphalen($idBedrijfsMedewerker)
-    {   //OPHALEN GEGEVENS
+    {   //OPHALEN BEDRIJFSMEDEWERKER GEGEVENS
         $this->db_table = "BEDRIJFSMEDEWERKER";
         $fields = array(
             "idBedrijfsMedewerker",
@@ -34,7 +34,7 @@ class output extends db {
         return $BedrijfsMedewerker;
     }
     public function BedrijfOphalen($Bedrijfsnaam)
-    {
+    {   //OPHALEN BEDRIJFS GEGEVENS
         $this->db_table = "BEDRIJF";
         $fields = array(
             "idBedrijf",
@@ -46,9 +46,9 @@ class output extends db {
         $where = array('Bedrijfsnaam' => $Bedrijfsnaam);
         $Bedrijf = $this->select($fields, $where);
         return $Bedrijf;
-    }
+    }   
     public function FaqOphalen()
-    {
+    {   //OPHALEN FAQ GEGEVENS
         $this->db_table = "FAQ";
         $fields = array(
             "Vraag",
