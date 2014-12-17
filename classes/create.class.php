@@ -35,3 +35,31 @@ class create extends user {
 //        </form>
 //    </body>
 //</html>
+
+public function create_FAQ() {
+$this->db_table = "MEDEWERKER";
+
+$fields = array("idMedewerker");
+$where = array("Gebruikersnaam" => $_SESSION['gebruikersnaam']);
+
+$idMedewerker = $this->select($fields, $where); 
+
+var_dump($idMedewerker);
+
+
+
+
+//Vraag, Beschrijving, Oplossing , idMedewerker
+
+
+}
+
+public function create_ticket() {
+$this->db_table = "TICKET";
+
+}
+
+public function create_status() {
+$this->db_table = "STATUS_WIJZIGING";
+
+}
