@@ -7,6 +7,7 @@ class create extends user {
     }
     
 }
+echo "hallo";
 
 //if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
 //    $fields = array("Gebruikersnaam", "Wachtwoord", "Autorisatie");
