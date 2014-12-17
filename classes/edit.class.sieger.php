@@ -1,23 +1,10 @@
 <?php
 
-class edit
+class edit extends output
 {
 
 // WIJZIG GEGEVENS MEDEWERKER
-    public function MedewerkerOphalen()
-    {   //OPHALEN GEGEVENS
-        $fields = array(
-            "idMedewerker",
-            "Gebruikersnaam",
-            "Email",
-            "Voornaam",
-            "Achternaam",
-            "Tussenvoegsel");
-
-        $where = array("idMedewerker" => "");
-    }
-
-    public function MedewerkerOpslaan()
+    public function MedewerkerOpslaan($idMedewerker)
     {//GEGEVENS TERUG VOEREN
         return $data = array(
             "idMedewerker" => "",
@@ -27,27 +14,10 @@ class edit
             "Achternaam" => "",
             "Tussenvoegsel" => "");
 
-        $where = array("idMedewerker" => "");
+        $where = array("idMedewerker" => $idMedewerker);
     }
 
-// WIJZIG GEGEVENS BEDRIJFSMEDEWERKER
-    public function BedrijfsmedewerkerOphalen($idBedrijfsmedewerker)
-    {   //OPHALEN GEGEVENS
-        $fields = array(
-            "idBedrijfsMedewerkers",
-            "idBedrijf",
-            "Gebruikersnaam",
-            "Email",
-            "Voornaam",
-            "Achternaam",
-            "Tussenvoegsel",
-            "Functie");
-
-        $where = array("idBedrijfsmedewerker" => $idBedrijfsmedewerker);
-        
-    }
-
-    public function editBedrijfsmedewerkerOpslaan()
+    public function editBedrijfsmedewerkerOpslaan($idBedrijfsmedewerker)
     {   //GEGEVENS TERUG VOEREN
         return $data = array
             ("idBedrijfsMedewerkers" => "",
@@ -59,24 +29,10 @@ class edit
             "Tussenvoegsel" => "",
             "Functie" => "");
 
-        $where = array("ID" => "");
+        $where = array("idBedrijfsmedewerker" => $idBedrijfsmedewerker);
     }
 
-//WIJZIG GEGEVENS BEDRIJF
-    public function editBedrijf()
-    {   //OPHALEN GEGEVENS
-        $fields = array(
-            "idBedrijf",
-            "Bedrijfsnaam",
-            "Adresgegevens",
-            "Telefoon",
-            "Email",
-            "Licentie");
-
-        $where = array("" => "");
-    }
-
-    public function EditBedrijfOpslaan()
+    public function EditBedrijfOpslaan($idBedrijf)
     { //GEGEVENS TERUG VOEREN
         return $data = array(
             "idBedrijf" => "",
@@ -86,6 +42,6 @@ class edit
             "Email" => "",
             "Licentie" => "");
 
-        $where = array("" => "");
+        $where = array("idBedrijf" => $idBedrijf );
     }
 }
